@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Camera Slider</title>
+		<link rel="icon" href="{{url_for('static',filename='img/favicon.ico')}}" type="image/x-icon" />
+        <link href="{{url_for('static',filename='css/icons.css')}}" rel="stylesheet">
+        <link href="{{url_for('static',filename='css/style.css')}}" rel="stylesheet">
+		<link type="text/css" rel="stylesheet" href="{{url_for('static',filename='css/materialize.min.css')}}"  media="screen,projection"/>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+	</head>
+	<body class = "grey lighten-5">
+		<div class="container">
+
+			<div class = "row" style="margin-bottom: 0px;">
+				<div class="col s12 center-align">
+					<a id="btnBackSave" onClick="BackSave();" style="width: 100%;" class="z-depth-2 grey lighten-1 waves-effect waves-light btn-large"><i class="material-icons">arrow_back</i></a>
+				</div>
+			</div>
+
+            <div class = "row" style="margin-bottom: 0px;">
+				<div class="col s12 center-align">
+                    <b>Name:</b> &nbsp;
+                    <div class="input-field inline">
+                        <input id="Name" type="text">
+                    </div>
+                </div>
+            </div>
+            
+            <div class = 'row' id='Add_0'>
+                <div class='col s12 center-align'>
+                    <a onClick='AddStep(0);' id='btnAdd_0' class='z-depth-2 blue lighten-2 waves-effect waves-light btn-floating'><i class='material-icons'>add_circle</i></a>
+                </div>
+            </div>
+
+            <div id = "StepList">
+
+			</div>
+			
+			<!--	Step add modal	-->
+			<div id="ModalAddStep" class="modal">
+				<div class = 'row'>
+					<div class="modal-content">
+						<input id="Pos" type="hidden" value="0">
+						<b>Step type:</b>
+						<select id="StepType" class="browser-default" onChange="ChangeStepType();">
+							<option value="0">Wait</option>
+							<option value="1">Go to</option>
+						</select>
+						<div id="Type_0">
+							Time:
+							<select id="Seconds_0" class="browser-default"></select>
+						</div>
+						<div id="Type_1" style="display: none;">
+							Position:
+							<select onchange="UpdateTravelSeconds();" id="Position_1" class="browser-default"></select>
+							Time:
+							<select id="Seconds_1" class="browser-default"></select>
+						</div>
+					</div>
+					<div class="row">
+						<div class='col s4 center-align'><a onClick='CloseStep();' id='btnCloseStep' class='z-depth-2 red lighten-2 waves-effect waves-light btn'>Close</a></div>
+						<div class='col s4 center-align'></div>
+						<div class='col s4 center-align'><a onClick='SaveStep();' id='btnSaveStep' class='z-depth-2 blue lighten-2 waves-effect waves-light btn'>Add</a></div>
+					</div>
+				</div>
+			</div>
+			
+			
+		</div>
+	</body>
+	<script type="text/javascript" src="{{url_for('static',filename='js/jquery-3.4.1.min.js')}}"></script>
+	<script type="text/javascript" src="{{url_for('static',filename='js/materialize.min.js')}}"></script>
+	<script type="text/javascript" src="{{url_for('static',filename='js/edit_sequence.js')}}"></script>
+</html>

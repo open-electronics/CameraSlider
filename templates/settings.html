@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Camera Slider</title>
+		<link rel="icon" href="{{url_for('static',filename='img/favicon.ico')}}" type="image/x-icon" />
+        <link href="{{url_for('static',filename='css/icons.css')}}" rel="stylesheet">
+        <link href="{{url_for('static',filename='css/style.css')}}" rel="stylesheet">
+		<link type="text/css" rel="stylesheet" href="{{url_for('static',filename='css/materialize.min.css')}}"  media="screen,projection"/>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+	</head>
+	<body class = "grey lighten-5">
+		<div class="container">
+
+			<div class = "row">
+				<div class="col s12 center-align">
+					<a href = "/" style="width: 100%;" class="z-depth-2 grey lighten-1 waves-effect waves-light btn-large"><i class="material-icons">home</i></a>
+				</div>
+			</div>
+            
+			<div class = "row">
+				<div class="red-text col s12 center-align">
+					<h5><i style = "font-size: 20px;" class="material-icons">settings</i> <b>SETTINGS</b></h5>
+				</div>
+            </div>
+
+			<div class="card black-text">
+				<div class="card-content">
+					<span class="card-title">Parameters</span>
+					Slider length (mm):
+					<div style="width:50%;" class="input-field inline">
+						<input id="SliderLength" type="number">
+					</div>
+				</div>
+			</div>
+
+			<div class = "row">
+				<div class="col s12 center-align">
+					<br>	<!-- SPACE	-->
+				</div>
+			</div>
+            
+			<div class = "row">
+				<div class="col s12 center-align">
+					<a onClick="SaveAndReboot();" style="width: 80%;" class="z-depth-2 red waves-effect waves-light btn-large"><i class="material-icons left">save</i>Save and reboot</a>
+				</div>
+            </div>
+            
+			<div class = "row">
+				<div class="col s12 center-align">
+					<br>	<!-- SPACE	-->
+				</div>
+			</div>
+
+            <div class="card-panel center-align">
+				<a onClick="Export();" style="width: 80%;" class="z-depth-2 blue lighten-2 waves-effect waves-light btn-large"><i class="material-icons left">keyboard_backspace</i>Export</a>
+			</div>
+			
+			<div class="card-panel center-align">
+				<input type="file" name="file" id="ImportFile">
+				<br><br>
+				<a onClick="Import();" style="width: 80%;" class="z-depth-2 blue lighten-2 waves-effect waves-light btn-large"><i class="material-icons left">input</i>Import and reboot</a>
+			</div>
+			
+			
+		</div>
+	</body>
+	<script type="text/javascript" src="{{url_for('static',filename='js/jquery-3.4.1.min.js')}}"></script>
+	<script type="text/javascript" src="{{url_for('static',filename='js/materialize.min.js')}}"></script>
+	<script type="text/javascript" src="{{url_for('static',filename='js/settings.js')}}"></script>
+</html>
