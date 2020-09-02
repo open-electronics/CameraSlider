@@ -6,8 +6,8 @@
 #define PIN_MOTOR_STEP 2
 #define PIN_MOTOR_END 12
 #define STEPS_PER_MM 5
-#define MAX_SPEED 1000
-#define BOUNCE_SPEED 1000
+#define MAX_SPEED 500 //1000
+//#define BOUNCE_SPEED 1000
 #define HOME_SPEED -500
 #define DEBUG_ON
 
@@ -100,26 +100,22 @@ void loop() {
     } else {
       Status = 0;
       PermittedDir = 1;
-      StepperMotor.setAcceleration(BOUNCE_SPEED);
-      StepperMotor.runToNewPosition(1);
     }
   }
 
   //  Check stop for Manual
-  if(Status == 2 && ( StepperMotor.currentPosition() <= 0 || StepperMotor.currentPosition() >= MaxSteps  )) {
+  if(Status == 2 && ( (digitalRead(PIN_MOTOR_END) == HIGH && CurrentDir != 1) || (StepperMotor.currentPosition() >= MaxSteps && CurrentDir != -1)   )) {
     StepperMotor.stop();
     Status = 0;
     WriteLog("Stop at: " + String(StepperMotor.currentPosition()));
-    if(StepperMotor.currentPosition() <= 0) {
-      //  Low limit: go to step 1
+    if(digitalRead(PIN_MOTOR_END) == HIGH) {
+      //  Low limit
+      StepperMotor.setCurrentPosition(0);
+      WriteLog("Home stop.");
       PermittedDir = 1;
-      StepperMotor.setAcceleration(BOUNCE_SPEED);
-      StepperMotor.runToNewPosition(1);
     } else if(StepperMotor.currentPosition() >= MaxSteps) {
       //  High limit go to step max - 1
       PermittedDir = -1;
-      StepperMotor.setAcceleration(BOUNCE_SPEED);
-      StepperMotor.runToNewPosition(MaxSteps-1);
     }
     WriteLog("Manual auto stop (limit reached). (" + String(StepperMotor.currentPosition()) + ")");
   }
@@ -183,6 +179,7 @@ void ExecuteCommand(int Command, int Param1, int Param2, int Param3) {
         StepperMotor.stop();
         StepperMotor.setSpeed((Param1 * Param2) * STEPS_PER_MM);
         WriteLog("Start or update manual move.");
+        WriteLog(String((Param1 * Param2) * STEPS_PER_MM));
       }
       break;
     //  CMD_START_SEQ

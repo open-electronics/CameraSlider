@@ -68,7 +68,7 @@ function UpdateTravelSeconds() {
     var LastPosition = GetLastPosition(parseInt($("#Pos").val()));              //  mm
     var DesiredPosition = parseInt($("#Position_1").val()) * 10;                 //  mm
     var MinSpeed = 1;        //  mm/s
-    var MaxSpeed = 200;      //  mm/s
+    var MaxSpeed = 100;      //  mm/s
     var Speed = 0;           //  mm/s
     var Travel = Math.abs(LastPosition - DesiredPosition) ;
 
