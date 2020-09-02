@@ -20,6 +20,7 @@ function Load() {
 //  Save settings and reboot
 function SaveAndReboot() {
 
+    M.toast({html: "Saved: rebooting..."});
     $.ajax({
 		type: "POST",
         url: "/save_settings",
@@ -28,9 +29,7 @@ function SaveAndReboot() {
 		},
 		cache: false
 	}).done(function(data) {
-        if($.trim(data) == "" || data == null) {
-            M.toast({html: "Saved: rebooting..."});
-        } else {
+        if($.trim(data) != "") {
             M.toast({html: data});
         }
 	});
