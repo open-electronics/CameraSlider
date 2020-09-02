@@ -1,6 +1,6 @@
 $(document).ready(function(){
 
-    UpdateSpeed(100);
+    UpdateSpeed(80);
     GetStatus();
     setInterval(GetStatus, 700);
 
