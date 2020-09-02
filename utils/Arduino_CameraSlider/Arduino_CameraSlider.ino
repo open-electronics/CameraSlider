@@ -6,10 +6,9 @@
 #define PIN_MOTOR_STEP 2
 #define PIN_MOTOR_END 12
 #define STEPS_PER_MM 5
-#define MAX_SPEED 500 //1000
-//#define BOUNCE_SPEED 1000
+#define MAX_SPEED 500
 #define HOME_SPEED -500
-#define DEBUG_ON
+//#define DEBUG_ON
 
 
 #ifdef DEBUG_ON
@@ -154,7 +153,13 @@ void ReceiveEvent(int HowMany) {
 void RequestEvent() {
 
   CurrentPosition = (int) ((100 * (StepperMotor.currentPosition() / STEPS_PER_MM)) / MaxLength);
-  byte Data[3] = {Status, CurrentPosition, CurrentRow+1};
+  byte RealRow;
+  if(Status == 1 && CurrentRow == 1) {
+   RealRow = 1; 
+  } else {
+   RealRow = CurrentRow + 1;
+  }
+  byte Data[3] = {Status, CurrentPosition, RealRow};
   Wire.write(Data, sizeof(Data));  
   
 }
