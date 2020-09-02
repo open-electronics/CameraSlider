@@ -28,8 +28,8 @@ function SaveAndReboot() {
 		},
 		cache: false
 	}).done(function(data) {
-        if($.trim(data) == "") {
-            M.toast({html: "Rebooting..."});
+        if($.trim(data) == "" || data == null) {
+            M.toast({html: "Saved: rebooting..."});
         } else {
             M.toast({html: data});
         }

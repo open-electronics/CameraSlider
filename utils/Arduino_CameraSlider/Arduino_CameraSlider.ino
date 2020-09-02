@@ -9,7 +9,7 @@
 #define MAX_SPEED 1000
 #define BOUNCE_SPEED 1000
 #define HOME_SPEED -500
-//#define DEBUG_ON
+#define DEBUG_ON
 
 
 #ifdef DEBUG_ON
@@ -176,7 +176,7 @@ void ExecuteCommand(int Command, int Param1, int Param2, int Param3) {
       break;
      // CMD_START_MOVE
     case 2:
-      if( Status == 0 && (PermittedDir == 0 || PermittedDir == Param1) ) {
+      if( (Status == 0 || Status == 2) && (PermittedDir == 0 || PermittedDir == Param1) ) {
         Status = 2;
         PermittedDir = 0;
         CurrentDir = Param1;
