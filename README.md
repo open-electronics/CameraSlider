@@ -1,7 +1,7 @@
 # CameraSlider
 
 ## Hardware (www.futurashop.it)
-- COMING SOON!
+- https://www.futurashop.it/slider-per-telecamere-e-macchine-fotografiche-7300-SLIDERCAM
 
 ## Setup
 1) Flash Arduino Nano with sketch: utils/Arduino_CameraSlider/Arduino_CameraSlider.ino
